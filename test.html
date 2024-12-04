@@ -162,7 +162,7 @@
 
 <body>
     <div class="menu">
-        <img src="http://127.0.0.1:5500/border-logo.png" alt="Paan Shop Graphic" class="header-graphic">
+        <img src="https://github.com/UnrealUnity/LuckyPan/blob/main/border-logo.png?raw=true" alt="Paan Shop Graphic" class="header-graphic">
         <h1>Paan Menu</h1>
         <div id="menu-sections"></div>
     </div>
@@ -183,7 +183,7 @@
             <p>Facebook: <a href="#">facebook.com/website</a></p>
             <p>Instagram: <a href="#">instagram.com/website</a></p>
         </div>
-        <p class="copyright">© 2024 Lucky Pan Shop. Build And Designed By AJ.</p>
+        <p class="copyright">© 2024 Lucky Pan Shop. Build And Designed By AL & AJ.</p>
     </div>
 
     <!-- Include the SheetJS library -->
@@ -192,7 +192,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Fetch the Excel file hosted on your server
-            fetch('http://127.0.0.1:5500/LuckyPan.xlsx')  // Change this URL to your file's URL
+            fetch('https://github.com/UnrealUnity/LuckyPan/raw/refs/heads/main/LuckyPan.xlsx')  // Change this URL to your file's URL
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch file');
@@ -254,7 +254,7 @@
 
                             // Create the image element (replace with actual image URL)
                             const itemImage = document.createElement('img');
-                            itemImage.src = 'http://127.0.0.1:5500/paan3.jpg';  // Replace with dynamic image path if available
+                            itemImage.src = 'https://github.com/UnrealUnity/LuckyPan/blob/main/paan3.jpg?raw=true';  // Replace with dynamic image path if available
                             itemImage.alt = item.itemName;
 
                             // Create the details div with item name and price
