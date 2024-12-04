@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu from Excel</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* background: linear-gradient(135deg, #ff9a9e, #fad0c4); */
+            background: rgb(131, 58, 180);
+            background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+            margin: 0;
+            padding: 20px;
+        }
+
+
+
+        .menu {
+            max-width: 900px;
+            margin: auto;
+            background-color: #fff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 20px;
+            border-top-left-radius: 12px;
+            /* No top-left corner radius */
+            border-top-right-radius: 12px;
+            border-bottom-left-radius: 0;
+            /* Bottom-left corner radius */
+            border-bottom-right-radius: 0;
+        }
+
+        .menu h1 {
+            text-align: center;
+            color: #d35400;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .menu-section {
+            margin-bottom: 30px;
+        }
+
+        .menu-section h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            background: #f7f7f7;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+
+        .menu-item .details {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .menu-item .details span {
+            color: #34495e;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .tip {
+            text-align: center;
+            margin-top: 30px;
+            font-style: italic;
+            color: #e74c3c;
+            background: #fdebd0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .header-graphic {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .menu-footer {
+            max-width: 900px;
+            margin: auto;
+            background-color: #2F3C7E;
+            color: #fff;
+            /* Optional: change text color for visibility */
+            border-bottom-left-radius: 12px;
+            /* Bottom-left corner radius */
+            border-bottom-right-radius: 12px;
+            /* Bottom-right corner radius */
+            border-top-left-radius: 0;
+            /* No top-left corner radius */
+            border-top-right-radius: 0;
+            /* No top-right corner radius */
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            /* Distribute sections evenly */
+            flex-wrap: wrap;
+            /* Allow wrapping if screen size is small */
+        }
+
+        .footer-section {
+            flex: 1;
+            margin: 0 15px;
+            /* Adds spacing between sections */
+            min-width: 200px;
+            /* Ensures the sections don't become too narrow */
+        }
+
+        .footer-section h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .footer-section p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            margin-top: 50px;
+            font-size: 12px;
+            color: #bbb;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <img src="http://127.0.0.1:5500/border-logo.png" alt="Paan Shop Graphic" class="header-graphic">
+        <h1>Paan Menu</h1>
+        <div id="menu-sections"></div>
+    </div>
+    <div class="menu-footer">
+        <div class="footer-section">
+            <h3>Address</h3>
+            <p>6MMR+MH9, Barshi - Paranda Rd, Mangalwar Peth, Mangire Mala, Barshi, Maharashtra 413401</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Contact Details</h3>
+            <p>Phone: +91 9011378600</p>
+            <p>Email: hafiztamboli98@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <p>Facebook: <a href="#">facebook.com/website</a></p>
+            <p>Instagram: <a href="#">instagram.com/website</a></p>
+        </div>
+        <p class="copyright">© 2024 Lucky Pan Shop. Build And Designed By AJ.</p>
+    </div>
+
+    <!-- Include the SheetJS library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch the Excel file hosted on your server
+            fetch('http://127.0.0.1:5500/LuckyPan.xlsx')  // Change this URL to your file's URL
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch file');
+                    }
+                    return response.arrayBuffer();  // Read the file as an array buffer
+                })
+                .then(data => {
+                    // Parse the binary data into a workbook object
+                    const workbook = XLSX.read(data, { type: 'array' });
+
+                    // Get the first sheet from the workbook
+                    const sheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[sheetName];
+
+                    // Convert the sheet data to JSON (convert each row to an array)
+                    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                    // Group data by category
+                    const groupedData = {};
+
+                    // Iterate over the rows and group items by category
+                    jsonData.forEach((row, index) => {
+                        if (index === 0) return;  // Skip the header row
+
+                        const category = row[2];  // Item category (first column)
+                        const itemName = row[0];  // Item name (second column)
+                        const otherName = row[1];
+                        const itemPrice = row[3]; // Item price (third column)
+                        const itemImage = row[4]; // Item price (third column)
+
+                        // Create a category group if it doesn't exist yet
+                        if (!groupedData[category]) {
+                            groupedData[category] = [];
+                        }
+
+                        // Add the item to the category group
+                        groupedData[category].push({ itemName,otherName, itemPrice, itemImage });
+                    });
+
+                    // Get the container to display the menu sections
+                    const menuSectionsContainer = document.getElementById('menu-sections');
+                    // menuSectionsContainer.innerHTML = '';  // Clear any previous content
+
+                    // Iterate through the grouped categories and create menu sections
+                    for (const category in groupedData) {
+                        // Create a new menu section for each category
+                        const menuSection = document.createElement('div');
+                        menuSection.classList.add('menu-section');
+
+                        // Create the category heading
+                        const categoryHeading = document.createElement('h2');
+                        categoryHeading.textContent = category;
+                        menuSection.appendChild(categoryHeading);
+
+                        // Iterate over the items in the category and create menu items
+                        groupedData[category].forEach(item => {
+                            const menuItem = document.createElement('div');
+                            menuItem.classList.add('menu-item');
+
+                            // Create the image element (replace with actual image URL)
+                            const itemImage = document.createElement('img');
+                            itemImage.src = 'http://127.0.0.1:5500/paan3.jpg';  // Replace with dynamic image path if available
+                            itemImage.alt = item.itemName;
+
+                            // Create the details div with item name and price
+                            const details = document.createElement('div');
+                            details.classList.add('details');
+
+                            const nameSpan = document.createElement('span');
+                            const firstName = document.createElement('div');
+                            const otherName = document.createElement('div');
+                            otherName.style = 'font-size: 1.0rem;'
+                        
+                            firstName.textContent = item.itemName;
+                            otherName.textContent = `( ${item.otherName} )`;
+                    
+                            nameSpan.appendChild(firstName);
+                            nameSpan.appendChild(otherName);
+
+                            const priceSpan = document.createElement('span');
+                            priceSpan.textContent = `₹${item.itemPrice}`;
+
+                            details.appendChild(nameSpan);
+                            details.appendChild(priceSpan);
+
+                            // Append the image and details to the menu item
+                            menuItem.appendChild(itemImage);
+                            menuItem.appendChild(details);
+
+                            // Append the menu item to the section
+                            menuSection.appendChild(menuItem);
+                        });
+
+                        // Append the menu section to the container
+                        menuSectionsContainer.appendChild(menuSection);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error reading the Excel file:', error);
+                });
+        });
+
+    </script>
+</body>
+
+</html>
