@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu from Excel</title>
-    <style>
+     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             /* background: linear-gradient(135deg, #ff9a9e, #fad0c4); */
@@ -14,8 +14,6 @@
             margin: 0;
             padding: 20px;
         }
-
-
 
         .menu {
             max-width: 900px;
@@ -35,7 +33,7 @@
         .menu h1 {
             text-align: center;
             color: #d35400;
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             margin-bottom: 20px;
         }
 
@@ -45,7 +43,7 @@
 
         .menu-section h2 {
             color: #2c3e50;
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             background: #ecf0f1;
             padding: 10px;
             border-radius: 8px;
@@ -63,8 +61,8 @@
         }
 
         .menu-item img {
-            width: 80px;
-            height: 80px;
+            width: clamp(50px, 10vw, 80px); /* Dynamically adjust image size */
+    height: clamp(50px, 10vw, 80px);
             border-radius: 8px;
             margin-right: 15px;
         }
@@ -78,7 +76,11 @@
         .menu-item .details span {
             color: #34495e;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+        }
+
+        .other-name-span{
+            font-size: clamp(0.8rem, 2vw, 1.0rem);
         }
 
         .tip {
@@ -132,13 +134,13 @@
 
         .footer-section h3 {
             margin-bottom: 10px;
-            font-size: 18px;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
             font-weight: bold;
         }
 
         .footer-section p {
             margin: 5px 0;
-            font-size: 14px;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
         }
 
         .footer-section a {
@@ -157,7 +159,7 @@
             width: 100%;
             text-align: center;
         }
-    </style>
+    </style> 
 </head>
 
 <body>
